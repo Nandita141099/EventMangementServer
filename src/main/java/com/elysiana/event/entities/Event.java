@@ -1,4 +1,4 @@
-package com.elysiana.Event;
+package com.elysiana.event.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -30,10 +30,11 @@ public class Event {
 	private LocalDate eventDate;
 	private LocalTime eventTime;
  
-	@OneToMany(mappedBy = "event", cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=Seats.class,cascade=CascadeType.ALL)
+	@JoinColumn(name="eventSeat",referencedColumnName="eventId")
 	private List<Seats> seat;
 
-	@OneToOne(mappedBy = "event", cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Location eventLocation;
 
 }
