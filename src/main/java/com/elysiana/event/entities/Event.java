@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +38,7 @@ public class Event {
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Seat> seats;
 
-//	@OneToOne(cascade=CascadeType.ALL)
-//	private Location eventLocation;
+    @OneToOne(cascade=CascadeType.ALL)
+	private Location eventLocation;
 
 }

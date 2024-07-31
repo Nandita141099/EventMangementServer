@@ -23,10 +23,9 @@ public class Location {
 	private String state;
 	private int pincode;
 	
-	/*
-	 * @OneToOne
-	 * 
-	 * @JoinColumn(name="eventId") private Event event;
-	 */
+	  @OneToOne
+	  @JoinColumn(name="eventId")
+	  private Event event;
+	 
 	
 }

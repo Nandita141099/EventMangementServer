@@ -16,5 +16,5 @@ public class SeatDto {
 	private double price;
 	private String seatType;
 
-	private EventDto event;
+//	private EventDto event;
 }
