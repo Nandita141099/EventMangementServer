@@ -30,11 +30,14 @@ public class Event {
 	private LocalDate eventDate;
 	private LocalTime eventTime;
  
-	@OneToMany(targetEntity=Seats.class,cascade=CascadeType.ALL)
-	@JoinColumn(name="eventSeat",referencedColumnName="eventId")
+	//@OneToMany
+//	(targetEntity=Seats.class,cascade=CascadeType.ALL)
+//	@JoinColumn(name="eventSeat",referencedColumnName="eventId")
+	
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Seats> seat;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	private Location eventLocation;
+//	@OneToOne(cascade=CascadeType.ALL)
+//	private Location eventLocation;
 
 }

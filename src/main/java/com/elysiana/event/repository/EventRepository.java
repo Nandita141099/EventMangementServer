@@ -11,5 +11,5 @@ import com.elysiana.event.entities.Seats;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Integer> {
 	
-	List<Seats> findByEventId(Integer eventId);
+//	List<Event> findBySeatSeatId(Integer seatId);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.elysiana.event.entities.Event;
 import com.elysiana.event.entities.Seats;
 import com.elysiana.event.repository.EventRepository;
+import com.elysiana.event.repository.SeatRepository;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -15,9 +16,12 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	EventRepository eventRepo;
 	
-	List<Seats> getAllSeatsByEventId(Integer eventId){
-        return  eventRepo.findByEventId(eventId);
-    }
+//	@Autowired
+//	SeatRepository seatRepo;
+//	
+//	public List<Event> getAllSeats(Integer id){
+//        return  (List<Event>) eventRepo.findBySeatSeatId(id);
+//    }
 	@Override
 	public void createEvent(Event event) {
 		eventRepo.save(event);

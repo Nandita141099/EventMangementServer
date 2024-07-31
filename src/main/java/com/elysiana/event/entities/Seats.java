@@ -22,11 +22,11 @@ public class Seats {
 	private double price;
 	private String seatType;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="eventId") private Event event;
-	 */
+	
+	  @ManyToOne
+	  @JoinColumn(name="eventId") 
+	  private Event event;
+	 
 	 
 
 }

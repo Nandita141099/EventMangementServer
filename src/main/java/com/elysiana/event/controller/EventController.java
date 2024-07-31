@@ -23,6 +23,11 @@ public class EventController {
 	@Autowired
 	EventServiceImpl service;
 	
+//	@GetMapping("/events/seats/{id}")
+//	List<Event> getAllSeats(@PathVariable Integer id){
+//		return service.getAllSeats(id);
+//	}
+	
 	@GetMapping("/events")
 	List<Event> getAllEvent()
 	{
