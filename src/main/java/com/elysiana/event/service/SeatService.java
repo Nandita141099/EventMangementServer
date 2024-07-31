@@ -2,13 +2,13 @@ package com.elysiana.event.service;
 
 import java.util.List;
 
-import com.elysiana.event.entities.Seats;
+import com.elysiana.payloads.SeatDto;
 
 
 
 public interface SeatService {
-	void createSeats(Seats seat);
-	void updateSeats(Seats seat);
-	void deleteSeats(Integer seatId);
-	List<Seats> getAllSeats();
+//	void createSeats(Seats seat);
+//	void updateSeats(Seats seat);
+//	void deleteSeats(Integer seatId);
+	List<SeatDto> getAllSeats();
 }

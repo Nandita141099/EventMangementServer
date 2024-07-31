@@ -2,13 +2,14 @@ package com.elysiana.event.service;
 
 import java.util.List;
 
-import com.elysiana.event.entities.Event;
+import com.elysiana.payloads.EventDto;
+
 
 
 
 public interface EventService {
-	void createEvent(Event event);
-	void updateEvent(Event event);
-	void deleteEvent(Integer eventId);
-	List<Event> getAllEvent();
+	void createEvent(EventDto eventDto);
+//	void updateEvent(EventDto eventDto);
+//	void deleteEvent(Integer eventId);
+	List<EventDto> getAllEvents();
 }
