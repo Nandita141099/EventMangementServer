@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.elysiana.entities.Event;
 import com.elysiana.entities.User;
 import com.elysiana.exceptions.ResourceNotFoundException;
-import com.elysiana.payloads.EventDto;
+import com.elysiana.payloads.SignupRequest;
 import com.elysiana.payloads.UserDto;
 import com.elysiana.repository.UserRepository;
 import com.elysiana.service.UserService;
@@ -22,6 +22,24 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	public void signup(SignupRequest signupRequest) throws Exception {
+		if (userRepo.existsByEmail(signupRequest.getEmail())) {
+			throw new Exception("Email is already taken");
+		}
+
+		User user = new User();
+		user.setName(signupRequest.getName());
+		user.setEmail(signupRequest.getEmail());
+		user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+		user.setContact(signupRequest.getContact());
+		user.setRoles(signupRequest.getRoles());
+
+		userRepo.save(user);
+	}
 
 	@Override
 	public UserDto getUserById(Integer userId) {
@@ -45,14 +63,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void updateUserById(UserDto userDto, Integer userId) {
-		User user = userRepo.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
+		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
 		user.setUserId(userDto.getUserId());
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
 		user.setContact(userDto.getContact());
-        user.setRoles(userDto.getRoles());
+		user.setRoles(userDto.getRoles());
 	}
 
 	@Override

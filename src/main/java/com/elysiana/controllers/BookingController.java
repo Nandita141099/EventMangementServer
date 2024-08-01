@@ -1,4 +1,4 @@
-package com.elysiana.controller;
+package com.elysiana.controllers;
 
 import java.util.List;
 
