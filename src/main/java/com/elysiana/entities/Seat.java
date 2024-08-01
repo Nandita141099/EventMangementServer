@@ -1,4 +1,4 @@
-package com.elysiana.Event;
+package com.elysiana.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seats {
+public class Seat {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int seatId;
 	private int capacity;
 	private double price;
 	private String seatType;
 
 	@ManyToOne
-	@JoinColumn(name="eventId")
+	@JoinColumn(name = "eventId")
 	private Event event;
 
 }
