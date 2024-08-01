@@ -1,4 +1,4 @@
-package com.elysiana.event.entities;
+package com.elysiana.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +23,9 @@ public class Location {
 	private String state;
 	private int pincode;
 	
-	/*
-	 * @OneToOne
-	 * 
-	 * @JoinColumn(name="eventId") private Event event;
-	 */
+	  @OneToOne
+	  @JoinColumn(name="eventId")
+	  private Event event;
+	 
 	
 }
