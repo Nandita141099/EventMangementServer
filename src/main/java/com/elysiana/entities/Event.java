@@ -43,5 +43,9 @@ public class Event {
 	
 	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
 	private List<Booking> booking;
+	
+	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+	@JoinColumn(name="userId")
+	private Booking userBooking;
 
 }

@@ -2,19 +2,14 @@ package com.elysiana.service;
 
 import java.util.List;
 
-import com.elysiana.entities.User;
 import com.elysiana.payloads.UserDto;
 
-public interface  UserService {
-	User createUser(User user);
+public interface UserService {
 
-	UserDto createUser(UserDto user);
-
-	UserDto updateUser(UserDto userDto, Integer id1);
-	UserDto getUserById(Integer id);
-
-	List<UserDto>getAllUser(); 
-	void deleteUser(Integer id);
-	
+	void createUser(UserDto userDto);
+	void updateUserById(UserDto userDto, Integer userId);
+	List<UserDto> getAllUsers();
+	UserDto getUserById(Integer userId);
+	void deleteUser(Integer userId);
 
 }
