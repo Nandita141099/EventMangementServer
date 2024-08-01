@@ -1,13 +1,14 @@
-package com.elysiana.event.repository;
+package com.elysiana.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.elysiana.event.entities.Seat;
+import com.elysiana.entities.Seat;
 
 @Repository
 public interface SeatRepository extends CrudRepository<Seat, Integer> {
 	List<Seat> findAll();
+	
 }

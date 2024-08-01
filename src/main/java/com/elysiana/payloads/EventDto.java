@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.elysiana.event.entities.Location;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +23,6 @@ public class EventDto {
 	private LocalTime eventTime;
   
 	private List<SeatDto> seats;
-	private Location location;
+	private  LocationDto location;
 	
 }

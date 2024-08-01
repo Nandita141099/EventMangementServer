@@ -1,16 +1,15 @@
-package com.elysiana.event.entities;
+package com.elysiana.entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
-import com.elysiana.payloads.SeatDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -30,15 +29,20 @@ public class Event {
 	private String description;
 	private LocalDate eventDate;
 	private LocalTime eventTime;
- 
-	//@OneToMany
+
+	// @OneToMany
 //	(targetEntity=Seats.class,cascade=CascadeType.ALL)
 //	@JoinColumn(name="eventSeat",referencedColumnName="eventId")
-	
+
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Seat> seats;
 
-    @OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+	@JoinColumn(name="locationId")
 	private Location eventLocation;
+	
+	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
+	@JoinColumn(name="bookingId")
+	private Booking booking;
 
 }

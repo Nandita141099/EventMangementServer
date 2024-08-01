@@ -7,12 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class SeatDto {
-
-	private int seatId;
-	private int capacity;
-	private double price;
+@NoArgsConstructor
+public class BookingDto {
+	private int bookingId;
+	private int noOfSeats;
 	private String seatType;
+	private double totalCost;
+	
 }

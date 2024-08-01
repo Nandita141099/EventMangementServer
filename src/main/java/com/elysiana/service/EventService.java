@@ -1,4 +1,4 @@
-package com.elysiana.event.service;
+package com.elysiana.service;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import com.elysiana.payloads.EventDto;
 
 public interface EventService {
 	void createEvent(EventDto eventDto);
-//	void updateEvent(EventDto eventDto);
-//	void deleteEvent(Integer eventId);
+	void updateEventById(EventDto eventDto,Integer eventId);
+	void deleteEventById(Integer eventId);
 	List<EventDto> getAllEvents();
 }

@@ -1,4 +1,4 @@
-package com.elysiana.event.service;
+package com.elysiana.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,9 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.elysiana.event.entities.Event;
-import com.elysiana.event.repository.EventRepository;
+import com.elysiana.entities.Event;
+import com.elysiana.entities.Seat;
+import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.EventDto;
+import com.elysiana.repository.EventRepository;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -20,12 +22,7 @@ public class EventServiceImpl implements EventService {
 	@Autowired
     private ModelMapper modelMapper;
 	
-//	@Autowired
-//	SeatRepository seatRepo;
-//	
-//	public List<Event> getAllSeats(Integer id){
-//        return  (List<Event>) eventRepo.findBySeatSeatId(id);
-//    }
+
 	@Override
 	public void createEvent(EventDto eventDto) {
 		Event event= eventDtoToEvent(eventDto);
@@ -33,22 +30,26 @@ public class EventServiceImpl implements EventService {
 		
 	}
 
-//	@Override
-//	public void updateEvent(EventDto event) {
-//		
-//		
-//		Event event = eventRepo.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "Id", eventId));
-//        event.setUserName(eventDto.getUserName());
-//        user.setEmailId(userDto.getEmailId());
-//        user.setPassword(userDto.getPassword());
-//        user.setBio(userDto.getBio());
-//       eventRepo.save(event);
-//	}
+	@Override
+	public void updateEventById(EventDto eventDto, Integer eventId) {
+		
+		
+		Event event = eventRepo.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "Id", eventId));
+        event.setEventId(eventDto.getEventId());
+        event.setEventType(eventDto.getEventType());
+        event.setTitle(eventDto.getTitle());
+        event.setDescription(eventDto.getDescription());
+        event.setEventDate(eventDto.getEventDate());
+        event.setEventTime(eventDto.getEventTime());
+      
+       eventRepo.save(event);
+	}
 
-//	@Override
-//	public void deleteEvent(Integer eventId) {
-//		eventRepo.deleteById(eventId);
-//	}
+	@Override
+	public void deleteEventById(Integer eventId) {
+		 Event event = eventRepo.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "Id", eventId));
+	       eventRepo.delete(event);
+	}
 
 	@Override
 	public List<EventDto> getAllEvents() {

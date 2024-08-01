@@ -1,4 +1,6 @@
-package com.elysiana.event.entities;
+package com.elysiana.entities;
+
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,23 +9,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seat {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int seatId;
-	private int capacity;
-	private double price;
+public class Booking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int bookingId;
+	private int noOfSeats;
 	private String seatType;
-
+	private double totalCost;
+	
+//	@ManyToOne
+//	private User userId;
+	
 	@ManyToOne
-	@JoinColumn(name = "eventId")
+	@JoinColumn(name="eventId")
 	private Event event;
-
+	
+	
 }
