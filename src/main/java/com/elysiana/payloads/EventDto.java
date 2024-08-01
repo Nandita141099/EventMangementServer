@@ -24,5 +24,6 @@ public class EventDto {
   
 	private List<SeatDto> seats;
 	private  LocationDto location;
+	private List<BookingDto> booking;
 	
 }
