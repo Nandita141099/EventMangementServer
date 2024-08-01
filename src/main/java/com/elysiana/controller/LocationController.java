@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elysiana.payloads.LocationDto;
-import com.elysiana.service.LocationServiceImpl;
+import com.elysiana.service.impl.LocationServiceImpl;
 
 @RestController
 @RequestMapping("api/v1.0")
