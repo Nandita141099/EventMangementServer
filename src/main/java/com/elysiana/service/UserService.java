@@ -1,9 +1,9 @@
-package com.elysiana.event.UserService;
+package com.elysiana.service;
 
 import java.util.List;
 
-import com.elysiana.event.Userdto.User;
-import com.elysiana.event.Userdto.UserDto;
+import com.elysiana.entities.User;
+import com.elysiana.payloads.UserDto;
 
 public interface  UserService {
 	User createUser(User user);

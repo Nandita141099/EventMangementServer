@@ -1,13 +1,12 @@
-package com.elysiana.event.UserServiceImpl;
+package com.elysiana.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.elysiana.event.UserRepository.UserRepository;
-import com.elysiana.event.UserService.UserService;
-import com.elysiana.event.Userdto.User;
-import com.elysiana.event.Userdto.UserDto;
+import com.elysiana.entities.User;
+import com.elysiana.payloads.UserDto;
+import com.elysiana.repository.UserRepository;
 
 public class UserServiceImplement implements UserService {
 	@Autowired

@@ -1,4 +1,4 @@
-package com.elysiana.event.Userdto;
+package com.elysiana.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

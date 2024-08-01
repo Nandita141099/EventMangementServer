@@ -1,4 +1,4 @@
-package com.elysiana.event.Userdto;
+package com.elysiana.payloads;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
