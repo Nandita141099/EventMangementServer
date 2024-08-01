@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.elysiana.payloads.EventDto;
 import com.elysiana.payloads.SeatDto;
-import com.elysiana.service.EventServiceImpl;
+import com.elysiana.service.impl.EventServiceImpl;
 
 @RestController
 @RequestMapping("api/v1.0")

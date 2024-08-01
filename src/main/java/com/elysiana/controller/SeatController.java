@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elysiana.payloads.SeatDto;
-import com.elysiana.service.SeatServiceImpl;
+import com.elysiana.service.impl.SeatServiceImpl;
 
 @RestController
 @RequestMapping("api/v1.0")
@@ -36,10 +36,10 @@ public class SeatController {
 		service.createSeats(seatDto , eventId);
 	}
 
-	@PutMapping("/seats/{seatId}")
-	void updateSeats(@RequestBody SeatDto seatDto,@PathVariable Integer seatId)
+	@PutMapping("/events/{eventId}/seats/{seatId}")
+	void updateSeats(@RequestBody SeatDto seatDto,@PathVariable Integer seatId , @PathVariable Integer eventId)
 		{
-			service.updateSeatsById(seatDto,seatId);
+			service.updateSeatsById(seatDto,seatId,eventId);
 		}
 
 	@DeleteMapping("/seats/{seatId}")

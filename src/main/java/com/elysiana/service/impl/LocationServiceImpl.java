@@ -1,4 +1,4 @@
-package com.elysiana.service;
+package com.elysiana.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,7 @@ import com.elysiana.payloads.EventDto;
 import com.elysiana.payloads.LocationDto;
 import com.elysiana.repository.EventRepository;
 import com.elysiana.repository.LocationRepository;
+import com.elysiana.service.LocationService;
 
 @Service
 public class LocationServiceImpl implements LocationService {

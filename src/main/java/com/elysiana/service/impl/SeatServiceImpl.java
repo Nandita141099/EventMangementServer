@@ -1,4 +1,4 @@
-package com.elysiana.service;
+package com.elysiana.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +15,7 @@ import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.SeatDto;
 import com.elysiana.repository.EventRepository;
 import com.elysiana.repository.SeatRepository;
+import com.elysiana.service.SeatService;
 
 @Service
 public class SeatServiceImpl implements SeatService {
@@ -58,7 +59,7 @@ public class SeatServiceImpl implements SeatService {
 	}
 
 	@Override
-	public void updateSeatsById(SeatDto seatDto, Integer seatId ) {
+	public void updateSeatsById(SeatDto seatDto,Integer seatId, Integer eventId){
 		
 		Seat seat = seatRepo.findById(seatId).orElseThrow(() -> new ResourceNotFoundException("Seat", "Id", seatId));
         seat.setSeatId(seatDto.getSeatId());

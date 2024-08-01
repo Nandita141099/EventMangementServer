@@ -1,4 +1,4 @@
-package com.elysiana.service;
+package com.elysiana.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +12,7 @@ import com.elysiana.entities.Seat;
 import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.EventDto;
 import com.elysiana.repository.EventRepository;
+import com.elysiana.service.EventService;
 
 @Service
 public class EventServiceImpl implements EventService {
