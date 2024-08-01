@@ -26,8 +26,8 @@ public class Booking {
 	private String seatType;
 	private double totalCost;
 	
-//	@ManyToOne
-//	private User userId;
+	@ManyToOne
+	private User userId;
 	
 	@ManyToOne
 	@JoinColumn(name="eventId")

@@ -15,38 +15,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elysiana.payloads.ApiResponse;
+import com.elysiana.payloads.SeatDto;
 import com.elysiana.payloads.UserDto;
 import com.elysiana.service.UserService;
+import com.elysiana.service.impl.SeatServiceImpl;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 	@Autowired
-	private UserService userservice;
-	@PostMapping("/")
-	public ResponseEntity<UserDto>createUser(@RequestBody UserDto userDto){
-		UserDto createUserDto=this.userservice.createUser(userDto);
-		return new ResponseEntity<>(createUserDto,HttpStatus.CREATED);
-	}
-	@PutMapping("/{id}")
-	public ResponseEntity<UserDto>updateUser(@RequestBody UserDto userDto,@PathVariable("id") Integer id1){
-		UserDto  updatedUser=this.userservice.updateUser(userDto,id1);
-		return ResponseEntity.ok(updatedUser);
-	}
-	@DeleteMapping("/{id}")
-	public ResponseEntity<ApiResponse>deleteUser(@PathVariable("id") Integer id1){
-		this.userservice.deleteUser(id1);
-		return new ResponseEntity<>(new ApiResponse("user deleted sucessfully",true),HttpStatus.OK);
-	}
-	@GetMapping("/")
-	public ResponseEntity<List<UserDto>>getAllUser(){
-		return ResponseEntity.ok(this.userservice.getAllUser());
-	}
-	@GetMapping("/{id}")
-	public ResponseEntity<UserDto>getSingleUser(@PathVariable Integer id){
-		return  ResponseEntity.ok(this.userservice.getUserById(id));
+	private UserService service;
+	
+	@GetMapping("/users")
+	ResponseEntity<List<UserDto>> getAllUsers() {
+		List<UserDto> listOfusers = service.getAllUsers();
+		return new ResponseEntity<>(listOfusers, HttpStatus.OK);
 	}
 	
+	@GetMapping("/users/{userId}")
+	 UserDto getUserById(@PathVariable Integer userId) {
+		UserDto listOfuser = service.getUserById(userId);
+		return listOfuser;
+	}
+
+	@PostMapping("/users")
+	void createUser(@RequestBody UserDto userDto)
+	{
+		service.createUser(userDto);
+	}
+
+	@PutMapping("/user/{userId}")
+	void updateUser(@RequestBody UserDto userDto,@PathVariable Integer userId )
+		{
+			service.updateUserById(userDto,userId);
+		}
+
+	@DeleteMapping("/users/{userId}")
+	void deleteUser(@PathVariable Integer userId)
+	{
+		service.deleteUser(userId);
+	}
 	
 	
 	
