@@ -2,6 +2,7 @@ package com.elysiana.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,4 +37,7 @@ public class User {
     @OneToOne
 //	@JoinColumn(name="eventId")
 	private Event event;
+    
+    @OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	private List<Review> review;
 }
