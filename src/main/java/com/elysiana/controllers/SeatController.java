@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.elysiana.payloads.ApiResponse;
 import com.elysiana.payloads.SeatDto;
 import com.elysiana.service.impl.SeatServiceImpl;
 
 @RestController
-@RequestMapping("api/v1.0")
+@RequestMapping("/api")
 public class SeatController {
 
 	@Autowired
@@ -30,21 +31,25 @@ public class SeatController {
 		return new ResponseEntity<>(listOfSeats, HttpStatus.OK);
 	}
 
-	@PostMapping("/events/{eventId}/seats")
-	void createSeats(@RequestBody SeatDto seatDto , @PathVariable Integer eventId)
+	@PostMapping("/admin/events/{eventId}/seats")
+	ResponseEntity<ApiResponse> createSeats(@RequestBody SeatDto seatDto , @PathVariable Integer eventId)
 	{
 		service.createSeats(seatDto , eventId);
+		return new ResponseEntity<>(new ApiResponse("Seat created successfully", true), HttpStatus.CREATED);
+		
 	}
 
-	@PutMapping("/events/{eventId}/seats/{seatId}")
-	void updateSeats(@RequestBody SeatDto seatDto,@PathVariable Integer seatId , @PathVariable Integer eventId)
+	@PutMapping("/admin/events/{eventId}/seats/{seatId}")
+	ResponseEntity<ApiResponse> updateSeats(@RequestBody SeatDto seatDto,@PathVariable Integer seatId , @PathVariable Integer eventId)
 		{
 			service.updateSeatsById(seatDto,seatId,eventId);
+			return new ResponseEntity<>(new ApiResponse("Seat updated successfully", true), HttpStatus.CREATED);
 		}
 
-	@DeleteMapping("/seats/{seatId}")
-	void deleteSeat(@PathVariable Integer seatId)
+	@DeleteMapping("/admin/seats/{seatId}")
+	ResponseEntity<ApiResponse> deleteSeat(@PathVariable Integer seatId)
 	{
 		service.deleteSeatsById(seatId);
+		return new ResponseEntity<>(new ApiResponse("Seat deleted successfully", true), HttpStatus.OK);
 	}
 }

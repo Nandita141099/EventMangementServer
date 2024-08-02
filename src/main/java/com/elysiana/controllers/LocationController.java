@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.elysiana.payloads.ApiResponse;
 import com.elysiana.payloads.LocationDto;
 import com.elysiana.service.impl.LocationServiceImpl;
 
 @RestController
-@RequestMapping("api/v1.0")
+@RequestMapping("/api")
 public class LocationController {
 
 	@Autowired
@@ -31,22 +32,25 @@ public class LocationController {
 	}
 	
 
-	@PostMapping("/events/{eventId}/locations")
-	void createLocation(@RequestBody LocationDto locationDto , @PathVariable  Integer eventId)
+	@PostMapping("/admin/events/{eventId}/locations")
+	ResponseEntity<ApiResponse> createLocation(@RequestBody LocationDto locationDto , @PathVariable  Integer eventId)
 	{
 		service.createLocation(locationDto, eventId);
+	return	new ResponseEntity<>(new ApiResponse("Location created successfully", true), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("events/{eventId}/locations/{locationId}")
-	void updateLocation(@RequestBody LocationDto locationDto ,@PathVariable Integer locationId,@PathVariable Integer eventId)
+	@PutMapping("/admin/events/{eventId}/locations/{locationId}")
+	ResponseEntity<ApiResponse> updateLocation(@RequestBody LocationDto locationDto ,@PathVariable Integer locationId,@PathVariable Integer eventId)
 		{
 			service.updateLocationById(locationDto,locationId, eventId);
+		return	new ResponseEntity<>(new ApiResponse("Location updated successfully", true), HttpStatus.CREATED);
 		}
 	
-	@DeleteMapping("/locations/{locationId}")
-	void deleteLocation(@PathVariable Integer locationId)
+	@DeleteMapping("/admin/locations/{locationId}")
+	ResponseEntity<ApiResponse> deleteLocation(@PathVariable Integer locationId)
 	{
 		service.deleteLocationById(locationId);
+		return new ResponseEntity<>(new ApiResponse("Location deleted successfully", true), HttpStatus.OK);
 	}
 
 }
