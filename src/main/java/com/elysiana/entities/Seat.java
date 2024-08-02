@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class Seat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int seatId;
-	private int capacity;
+	private Integer seatId;
+	private Integer capacity;
 	private double price;
 	private String seatType;
 
