@@ -35,52 +35,34 @@ public class AuthenticationController {
 	@Autowired
 	private UserService userService;
 
-//	@PostMapping("/authenticate")
-//	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
-//			throws Exception {
-//
-//		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
-//				authenticationRequest.getPassword()));
-//
-//		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
-//
-//		final String jwt = jwtUtil.generateToken(userDetails);
-//
-//		return ResponseEntity.ok(new AuthenticationResponse(jwt));
-//	}
-	
 	@PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
-            @RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(
+			@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
-        // Authenticate the user
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
+		// Authenticate the user
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+				authenticationRequest.getEmail(), authenticationRequest.getPassword()));
 
-        // Load user details
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+		// Load user details
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 
-        // Generate JWT token
-        final String jwtToken = jwtUtil.generateToken(userDetails);
+		// Generate JWT token
+		final String jwtToken = jwtUtil.generateToken(userDetails);
 
-        // Cast UserDetails to UserDetailsImpl to access custom fields
-        if (!(userDetails instanceof UserDetailsImpl)) {
-            throw new IllegalArgumentException("UserDetails is not an instance of UserDetailsImpl");
-        }
+		// Cast UserDetails to UserDetailsImpl to access custom fields
+		if (!(userDetails instanceof UserDetailsImpl)) {
+			throw new IllegalArgumentException("UserDetails is not an instance of UserDetailsImpl");
+		}
 
-        UserDetailsImpl userDetailsImpl = (UserDetailsImpl) userDetails;
+		UserDetailsImpl userDetailsImpl = (UserDetailsImpl) userDetails;
 
-        // Create and return the response with JWT and user details
-        AuthenticationResponse response = new AuthenticationResponse(
-                jwtToken,
-                userDetailsImpl.getUserId(),
-                userDetailsImpl.getName(),
-                userDetailsImpl.getUsername(),  // Typically username is used as email
-                userDetailsImpl.getContact()
-        );
+		// Create and return the response with JWT and user details
+		AuthenticationResponse response = new AuthenticationResponse(jwtToken, userDetailsImpl.getUserId(),
+				userDetailsImpl.getName(), userDetailsImpl.getUsername(), // Typically username is used as email
+				userDetailsImpl.getContact());
 
-        return ResponseEntity.ok(response);
-    }
+		return ResponseEntity.ok(response);
+	}
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {

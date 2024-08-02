@@ -14,44 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.elysiana.payloads.ApiResponse;
 import com.elysiana.payloads.EventDto;
-import com.elysiana.payloads.SeatDto;
 import com.elysiana.service.impl.EventServiceImpl;
 
 @RestController
-@RequestMapping("api/v1.0")
+@RequestMapping("/api")
 public class EventController {
 
 	@Autowired
 	EventServiceImpl service;
 
-//	@GetMapping("/events/seats/{id}")
-//	List<Event> getAllSeatsByEventId(@PathVariable Integer id){
-//		return service.getAllSeats(id);
-//	}
-
 	@GetMapping("/events")
 	ResponseEntity<List<EventDto>> getAllEvent() {
-		List<EventDto> listOfEvents =  service.getAllEvents();
-		return new ResponseEntity<>(listOfEvents,HttpStatus.OK);
+		List<EventDto> listOfEvents = service.getAllEvents();
+		return new ResponseEntity<>(listOfEvents, HttpStatus.OK);
 
 	}
-	@PostMapping("/events")
-	void createLocation(@RequestBody EventDto eventDto)
-	{
+
+	@PostMapping("/admin/events")
+	ResponseEntity<ApiResponse> createEvent(@RequestBody EventDto eventDto) {
 		service.createEvent(eventDto);
+		return new ResponseEntity<>(new ApiResponse("Event created successfully", true), HttpStatus.CREATED);
 	}
 
-	@PutMapping("/events/{eventId}")
-	void updateLocation(@RequestBody EventDto eventDto,@PathVariable Integer eventId)
-		{
-			service.updateEventById(eventDto,eventId);
-		}
-	
-	@DeleteMapping("/events/{eventId}")
-	void deleteLocation(@PathVariable Integer eventId)
-	{
+	@PutMapping("/admin/events/{eventId}")
+	ResponseEntity<ApiResponse> updateEventById(@RequestBody EventDto eventDto, @PathVariable Integer eventId) {
+		service.updateEventById(eventDto, eventId);
+		return new ResponseEntity<>(new ApiResponse("Event updated successfully", true), HttpStatus.CREATED);
+	}
+
+	@DeleteMapping("/admin/events/{eventId}")
+	ResponseEntity<ApiResponse> deleteEventById(@PathVariable Integer eventId) {
 		service.deleteEventById(eventId);
+		return new ResponseEntity<>(new ApiResponse("Event deleted successfully", true), HttpStatus.OK);
 	}
 
 }
