@@ -18,10 +18,8 @@ import com.elysiana.payloads.BookingDto;
 import com.elysiana.service.impl.BookingServiceImpl;
 
 @RestController
-@RequestMapping("api/v1.0")
+@RequestMapping("/api")
 public class BookingController {
-	
-	
 
 		@Autowired
 		BookingServiceImpl service;
