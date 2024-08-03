@@ -1,6 +1,4 @@
 
-
-
 package com.elysiana.repository;
 
 import java.util.List;
@@ -14,6 +12,7 @@ import com.elysiana.entities.User;
 
 @Repository
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
+
 	List<Review> findByEvent(Event event);
 
 	List<Review> findByUser(User user);
@@ -21,4 +20,3 @@ public interface ReviewRepository extends CrudRepository<Review, Integer> {
 //	List<Review> findByEventAndRatingGreaterThanEqual(Integer eventId, Integer rating);
 
 }
-
