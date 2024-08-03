@@ -9,5 +9,7 @@ import com.elysiana.entities.Location;
 
 @Repository
 public interface LocationRepository extends CrudRepository<Location, Integer> {
+	
 	List<Location> findAll();
+	
 }

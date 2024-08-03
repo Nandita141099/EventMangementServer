@@ -10,11 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.elysiana.entities.Booking;
 import com.elysiana.entities.Event;
-import com.elysiana.entities.Seat;
 import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.BookingDto;
-import com.elysiana.payloads.EventDto;
-import com.elysiana.payloads.SeatDto;
 import com.elysiana.repository.BookingRepository;
 import com.elysiana.repository.EventRepository;
 import com.elysiana.service.BookingService;
@@ -52,13 +49,13 @@ public class BookingServiceImpl  implements BookingService{
 
 	@Override
 	public void updateBooking(BookingDto bookingDto, Integer eventId, Integer bookingId) {
-		Booking booking = bookingRepo.findById(bookingId).orElseThrow(() -> new ResourceNotFoundException("Booking", "Id", bookingId));
-        booking.setBookingId(bookingDto.getBookingId());
-        booking.setNoOfSeats(bookingDto.getNoOfSeats());
-        booking.setSeatType(bookingDto.getSeatType());
-        booking.setTotalCost(bookingDto.getTotalCost());
-       bookingRepo.save(booking);
-		
+//		Booking booking = bookingRepo.findById(bookingId).orElseThrow(() -> new ResourceNotFoundException("Booking", "Id", bookingId));
+//        booking.setBookingId(bookingDto.getBookingId());
+//        booking.setNoOfSeats(bookingDto.getNoOfSeats());
+//        booking.setSeatType(bookingDto.getSeatType());
+//        booking.setTotalCost(bookingDto.getTotalCost());
+//       bookingRepo.save(booking);
+//		
 	}
 
 	@Override

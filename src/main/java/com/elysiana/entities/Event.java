@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -24,32 +25,27 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int eventId;
-	private String eventType; // like conferenece or conceret
+	private String eventType;
 	private String title;
 	private String description;
 	private LocalDate eventDate;
 	private LocalTime eventTime;
 
-	// @OneToMany
-//	(targetEntity=Seats.class,cascade=CascadeType.ALL)
-//	@JoinColumn(name="eventSeat",referencedColumnName="eventId")
-
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Seat> seats;
 
 	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
-	@JoinColumn(name="locationId")
+	@JoinColumn(name = "locationId")
 	private Location eventLocation;
-	
-	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
+
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User user;
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Booking> booking;
-	
-	@OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
-	private Booking userBooking;
-	
-	@OneToMany(mappedBy="event",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
 	private List<Review> review;
-	
 
 }

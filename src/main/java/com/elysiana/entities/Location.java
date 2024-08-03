@@ -17,15 +17,13 @@ import lombok.NoArgsConstructor;
 public class Location {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int locationId;
+	private Integer locationId;
 	private String place;
 	private String city;
 	private String state;
-	private int pincode;
+	private Integer pincode;
 	
 	  @OneToOne
 	  @JoinColumn(name="eventId")
 	  private Event event;
-	 
-	
 }

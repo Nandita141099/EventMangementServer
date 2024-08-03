@@ -16,8 +16,6 @@ import com.elysiana.repository.ReviewRepository;
 import com.elysiana.repository.UserRepository;
 import com.elysiana.service.ReviewService;
 
-import jakarta.annotation.Resource;
-
 @Service
 public class ReviewServiceImpl implements ReviewService {
 	@Autowired

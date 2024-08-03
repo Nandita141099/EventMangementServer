@@ -1,20 +1,17 @@
 package com.elysiana.payloads;
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-@Setter
-@Getter
-@NoArgsConstructor
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 	private int userId;
 	private String name;
 	private String  email;
 	private String password;
 	private String contact;
-	private String roles;
+	private String role;
 
 }

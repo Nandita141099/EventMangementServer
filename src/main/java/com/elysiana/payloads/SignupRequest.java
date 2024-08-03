@@ -1,15 +1,17 @@
 package com.elysiana.payloads;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SignupRequest {
 	private String name;
     private String email;
     private String password;
     private String contact;
-    private String roles;
+    private String role;
 
 }

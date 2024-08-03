@@ -3,9 +3,7 @@ package com.elysiana.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.elysiana.entities.Event;
 import com.elysiana.entities.Review;
-import com.elysiana.entities.User;
 
 public interface ReviewService {
 

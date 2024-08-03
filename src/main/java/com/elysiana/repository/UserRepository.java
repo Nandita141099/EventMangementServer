@@ -7,8 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 import com.elysiana.entities.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
+
 	List<User> findAll();
+
 	User findByEmail(String email);
+
 	boolean existsByEmail(String email);
 
 }

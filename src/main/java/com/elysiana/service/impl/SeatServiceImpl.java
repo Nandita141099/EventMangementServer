@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.elysiana.entities.Event;
-import com.elysiana.entities.Location;
 import com.elysiana.entities.Seat;
 import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.SeatDto;

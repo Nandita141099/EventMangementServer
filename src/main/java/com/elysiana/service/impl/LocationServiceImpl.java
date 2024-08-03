@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.elysiana.entities.Event;
 import com.elysiana.entities.Location;
 import com.elysiana.exceptions.ResourceNotFoundException;
-import com.elysiana.payloads.EventDto;
 import com.elysiana.payloads.LocationDto;
 import com.elysiana.repository.EventRepository;
 import com.elysiana.repository.LocationRepository;

@@ -21,17 +21,20 @@ import lombok.Setter;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int bookingId;
-	private int noOfSeats;
-	private String seatType;
+	private Integer bookingId;
+	private Integer noOfSeats;
 	private double totalCost;
 	
 	@ManyToOne
-	private User userId;
+	@JoinColumn(name = "userId")
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name="eventId")
 	private Event event;
 	
+	@ManyToOne
+	@JoinColumn(name="seatId")
+	private Seat seat;
 	
 }
