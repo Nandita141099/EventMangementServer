@@ -1,19 +1,18 @@
 package com.elysiana.payloads;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticationResponse {
 	private String jwt;
-    private int userId;
-    private String name;
-    private String email;
-    private String contact;
+	private int userId;
+	private String name;
+	private String email;
+	private String contact;
+	private String role;
 
 }
