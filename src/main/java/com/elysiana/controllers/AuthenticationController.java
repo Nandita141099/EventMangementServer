@@ -59,7 +59,7 @@ public class AuthenticationController {
 		// Create and return the response with JWT and user details
 		AuthenticationResponse response = new AuthenticationResponse(jwtToken, userDetailsImpl.getUserId(),
 				userDetailsImpl.getName(), userDetailsImpl.getUsername(), // Typically username is used as email
-				userDetailsImpl.getContact());
+				userDetailsImpl.getContact(), userDetailsImpl.getAuthorities().iterator().next().getAuthority());
 
 		return ResponseEntity.ok(response);
 	}

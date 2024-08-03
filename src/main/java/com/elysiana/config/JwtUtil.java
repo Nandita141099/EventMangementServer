@@ -52,6 +52,7 @@ public class JwtUtil {
 		claims.put("userId", userDetailsImpl.getUserId());
 		claims.put("name", userDetailsImpl.getName());
 		claims.put("contact", userDetailsImpl.getContact());
+		claims.put("role", userDetailsImpl.getAuthorities().iterator().next().getAuthority());
 
 		// Generate the token with the custom claims
 		return createToken(claims, userDetails.getUsername());
