@@ -1,12 +1,10 @@
 package com.elysiana.payloads;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingDto {
@@ -14,5 +12,5 @@ public class BookingDto {
 	private int noOfSeats;
 	private String seatType;
 	private double totalCost;
-	
+
 }
