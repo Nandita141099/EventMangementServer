@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(signupRequest.getEmail());
 		user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
 		user.setContact(signupRequest.getContact());
-		user.setRoles(signupRequest.getRoles());
+		user.setRole(signupRequest.getRole());
 
 		userRepo.save(user);
 	}
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(userDto.getEmail());
 		user.setPassword(userDto.getPassword());
 		user.setContact(userDto.getContact());
-		user.setRoles(userDto.getRoles());
+		user.setRole(userDto.getRole());
 	}
 
 	@Override
