@@ -19,7 +19,9 @@ public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
+	private Integer reviewId;
+	private Double rating;
+	private String comment;
 
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -28,9 +30,5 @@ public class Review {
 	@ManyToOne
 	@JoinColumn(name = "eventId")
 	private Event event;
-
-	private int rating;
-
-	private String comment;
 
 }
