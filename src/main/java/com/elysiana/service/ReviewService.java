@@ -17,6 +17,8 @@ public interface ReviewService {
 
 	List<Review> getReviewByEventId(Integer eventId);
 	
+	void updateReviewById(Review review, Integer reviewId); //this one new
+	
 	
 
 }

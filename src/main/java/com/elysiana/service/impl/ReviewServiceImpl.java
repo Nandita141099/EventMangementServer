@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.elysiana.entities.Event;
+import com.elysiana.entities.Location;
 import com.elysiana.entities.Review;
 import com.elysiana.entities.User;
 import com.elysiana.exceptions.ResourceNotFoundException;
@@ -49,5 +50,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 	public void deleteReviewById(Integer reviewId) {
 		reviewRepository.deleteById(reviewId);
+	}
+
+	@Override
+	public void updateReviewById(Review review1, Integer reviewId) {
+	
+Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new ResourceNotFoundException("Review", "Id", reviewId));
+		
 	}
 };

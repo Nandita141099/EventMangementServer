@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.elysiana.entities.Event;
 import com.elysiana.entities.Location;
+import com.elysiana.entities.User;
 import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.LocationDto;
 import com.elysiana.repository.EventRepository;
@@ -72,5 +73,12 @@ public class LocationServiceImpl implements LocationService {
 	        locationRepo.save(location);
 		
 		
+	}
+	@Override
+	public LocationDto getLocationByEventId(Integer eventId) {
+		Event event = eventRepo.findById(eventId)
+				.orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
+		return locationRepo.findByEvent(event);
+	
 	}
 }

@@ -30,7 +30,12 @@ public class LocationController {
 		List<LocationDto> listOflocation = service.getAllLocations();
 		return new ResponseEntity<>(listOflocation, HttpStatus.OK);
 	}
-	
+	@GetMapping("/locations/{eventId}")
+	ResponseEntity<LocationDto> getLocationByEventId(@PathVariable  Integer eventId)
+	{
+		LocationDto location = service.getLocationByEventId(eventId);
+		return new ResponseEntity (location , HttpStatus.OK);
+	}
 
 	@PostMapping("/admin/events/{eventId}/locations")
 	ResponseEntity<ApiResponse> createLocation(@RequestBody LocationDto locationDto , @PathVariable  Integer eventId)

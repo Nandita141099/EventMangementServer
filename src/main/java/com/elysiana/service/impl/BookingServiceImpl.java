@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.elysiana.entities.Booking;
 import com.elysiana.entities.Event;
+import com.elysiana.entities.User;
 import com.elysiana.exceptions.ResourceNotFoundException;
 import com.elysiana.payloads.BookingDto;
 import com.elysiana.repository.BookingRepository;
 import com.elysiana.repository.EventRepository;
+import com.elysiana.repository.UserRepository;
 import com.elysiana.service.BookingService;
 
 @Service
@@ -27,6 +29,9 @@ public class BookingServiceImpl  implements BookingService{
 	
 	@Autowired
 	EventRepository eventRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	@Override
 	public List<BookingDto> getAllBookings() {
@@ -72,5 +77,25 @@ public class BookingServiceImpl  implements BookingService{
         BookingDto bookingDto = modelMapper.map(booking, BookingDto.class);
         return bookingDto;
     }
+
+	@Override
+	public Optional<Booking> getBookingById(Integer bookingId) {
+		 Booking booking = bookingRepo.findById(bookingId).orElseThrow(() -> new ResourceNotFoundException("Booking", "Id", bookingId));
+	    return bookingRepo.findById(bookingId);
+	}
+
+	@Override
+	public List<BookingDto> getAllBookingByUser(Integer userId) {
+		User user = userRepo.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+		return bookingRepo.findByUser(user);
+	}
+
+	@Override
+	public List<BookingDto> getAllBookingByEvent(Integer eventId) {
+		Event event = eventRepo.findById(eventId)
+				.orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
+		return  bookingRepo.findByEvent(event);
+	}
 
 }

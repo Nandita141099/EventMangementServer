@@ -1,6 +1,7 @@
 package com.elysiana.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elysiana.config.JwtUtil;
+import com.elysiana.entities.Event;
 import com.elysiana.payloads.ApiResponse;
 import com.elysiana.payloads.EventDto;
 import com.elysiana.service.impl.EventServiceImpl;
@@ -43,7 +45,12 @@ public class EventController {
 		List<EventDto> events = service.getAllEventsByUserEmail(email);
 		return new ResponseEntity<>(events, HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/events/{eventId}")
+	ResponseEntity<Optional<Event>> getEventById(@PathVariable Integer eventId) {
+		Optional<Event> event = service.getEventById(eventId);
+		return new ResponseEntity<>(event, HttpStatus.OK);
+	}
 	@PostMapping("/admin/events")
 	ResponseEntity<ApiResponse> createEvent(@RequestHeader("Authorization") String token,
 			@RequestBody EventDto eventDto) {
