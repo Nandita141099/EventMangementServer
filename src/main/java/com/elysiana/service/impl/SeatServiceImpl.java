@@ -59,7 +59,7 @@ public class SeatServiceImpl implements SeatService {
 
 	@Override
 	public void updateSeatsById(SeatDto seatDto,Integer seatId, Integer eventId){
-		
+		Optional<Event> event = eventRepo.findById(eventId);
 		Seat seat = seatRepo.findById(seatId).orElseThrow(() -> new ResourceNotFoundException("Seat", "Id", seatId));
         seat.setSeatId(seatDto.getSeatId());
         seat.setCapacity(seatDto.getCapacity());
@@ -72,6 +72,21 @@ public class SeatServiceImpl implements SeatService {
 	public void deleteSeatsById(Integer seatId) {
 		 Seat seat = seatRepo.findById(seatId).orElseThrow(() -> new ResourceNotFoundException("Seat", "Id", seatId));
 	       seatRepo.delete(seat);
+		
+	}
+
+	@Override
+	public List<SeatDto> getAllSeatByEvent(Integer eventId) {
+		Event event = eventRepo.findById(eventId)
+				.orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
+		return seatRepo.findByEvent(event);
+	}
+
+	@Override
+	public Optional<Seat> getSeatById(Integer seatId) {
+		
+		Seat seat = seatRepo.findById(seatId).orElseThrow(() -> new ResourceNotFoundException("Seat", "Id", seatId));
+		return seatRepo.findById(seatId);
 		
 	}
 }

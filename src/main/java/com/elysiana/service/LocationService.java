@@ -15,4 +15,9 @@ public interface LocationService {
 	void deleteLocationById(Integer locationId);
 
 	List<LocationDto> getAllLocations();
+	
+	LocationDto getLocationByEventId(Integer eventId); //new
+	
+	
+	
 }
