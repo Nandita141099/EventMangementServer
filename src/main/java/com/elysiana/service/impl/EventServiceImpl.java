@@ -1,6 +1,7 @@
 package com.elysiana.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -81,6 +82,13 @@ public class EventServiceImpl implements EventService {
 	public EventDto eventToEventDto(Event event) {
 		EventDto eventDto = modelMapper.map(event, EventDto.class);
 		return eventDto;
+	}
+
+	@Override
+	public Optional<Event> getEventById(Integer eventId) {
+		Event event = eventRepo.findById(eventId)
+				.orElseThrow(() -> new ResourceNotFoundException("Event", "id", eventId));
+		return eventRepo.findById(eventId);
 	}
 
 }
